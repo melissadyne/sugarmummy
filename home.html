@@ -1,1 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Connect to Rich Sugar Mummies — Instant</title>
+  <meta name="description" content="See who's online now. Enter your WhatsApp number and proceed to meet verified sugar mummies. Quick signup & payment."/>
+  <style>
+    :root{
+      --accent:#ff5a5f;
+      --muted:#6b7280;
+      --bg:#0f1724;
+      --card:#0b1220;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --white: #ffffff;
+      font-family: Inter,system-ui,Segoe UI,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#081029 0%, #071122 100%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .container{
+      width:100%;
+      max-width:980px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:20px;
+      box-shadow: 0 8px 40px rgba(2,6,23,0.6);
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:18px;
+    }
+
+    header h1{margin:0 0 6px 0; font-size:20px}
+    header p{margin:0; color:var(--muted); font-size:13px}
+
+    /* left: list */
+    .feed{
+      padding:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border-radius:12px;
+      min-height:300px;
+      overflow:auto;
+    }
+    .filters{
+      display:flex;
+      gap:8px;
+      margin:10px 0 14px 0;
+    }
+    .pill{
+      background:var(--glass);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      cursor:pointer;
+      color:var(--white);
+      border:1px solid rgba(255,255,255,0.03)
+    }
+    .pill.active{background:linear-gradient(90deg,var(--accent),#ff8a70); color:#0b1220; font-weight:600; border: none}
+
+    .card{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      margin-bottom:12px;
+      border-radius:12px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.025);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.5) }
+    .avatar{
+      width:72px; height:72px; border-radius:12px; background:var(--glass); flex:0 0 72px; display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--white);
+      font-size:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.03)
+    }
+    .meta{flex:1}
+    .meta h3{margin:0 0 4px 0; font-size:16px}
+    .meta p{margin:0; color:var(--muted); font-size:13px}
+    .status{
+      display:flex; gap:8px; align-items:center;
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:#34d399;box-shadow:0 0 6px rgba(52,211,153,0.2)}
+    .btn{
+      background:var(--accent);
+      color:#081122;
+      border:none;
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:13px;
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--white)}
+    /* right: form */
+    aside{
+      padding:14px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:300px;
+    }
+    label{font-size:13px;color:var(--muted)}
+    input[type="tel"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background:transparent;
+      color:var(--white);
+      font-size:15px;
+      outline:none;
+    }
+    .small{font-size:12px;color:var(--muted)}
+    .pay-actions{display:flex; gap:8px; align-items:center; margin-top:8px}
+    .share-row{display:flex; gap:8px; margin-top:8px}
+    .share{
+      padding:8px 10px;border-radius:10px;background:var(--glass-2); border:1px solid rgba(255,255,255,0.02); cursor:pointer; font-size:13px
+    }
+    footer{grid-column:1/3; text-align:center; color:var(--muted); font-size:12px; margin-top:8px}
+
+    /* responsive */
+    @media (max-width:920px){
+      .container{grid-template-columns:1fr; padding:14px}
+      aside{order:2}
+    }
+    /* small animation */
+    .pulse{ animation: pulse 1.6s infinite; }
+    @keyframes pulse{
+      0%{ transform:scale(1)}
+      50%{ transform:scale(1.02)}
+      100%{ transform:scale(1)}
+    }
+
+    .count{
+      display:inline-block;
+      background: rgba(255,255,255,0.03);
+      padding:4px 8px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.02)
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="page-title">
+    <main>
+      <header>
+        <h1 id="page-title">Who's online now — Sugar Mummy Connect</h1>
+        <p>Real-time list. Enter your WhatsApp number, tap the payment button and get priority matches.</p>
+      </header>
+
+      <div class="filters" aria-hidden="false">
+        <div class="pill active" data-filter="all">All</div>
+        <div class="pill" data-filter="local">Local</div>
+        <div class="pill" data-filter="abroad">Abroad</div>
+        <div class="pill" data-filter="VIP">VIP</div>
+        <div style="margin-left:auto" class="count" id="onlineCount">12 Online</div>
+      </div>
+
+      <section class="feed" id="mummyFeed" aria-live="polite">
+        <!-- sample cards (script will fill/animate) -->
+      </section>
+    </main>
+
+    <aside>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <strong style="font-size:16px">Get priority access</strong>
+          <div class="small">Enter your WhatsApp to reserve your spot</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="small">Price</div>
+          <div style="font-weight:800; font-size:18px; color:var(--accent)">₦1,500</div>
+        </div>
+      </div>
+
+      <form id="leadForm" onsubmit="return false;" novalidate>
+        <label for="wa">WhatsApp number</label>
+        <input id="wa" name="whatsapp" inputmode="tel" type="tel" placeholder="+234 801 234 5678" aria-label="WhatsApp number" required>
+        <div class="small" style="margin-top:6px">We'll use this to confirm your match via WhatsApp. We do not share your number.</div>
+
+        <div class="pay-actions">
+          <button id="payBtn" class="btn" type="button">Proceed to Payment</button>
+          <button id="previewBtn" class="btn ghost" type="button">Preview Matches</button>
+        </div>
+
+        <div class="share-row">
+          <button id="copyLink" class="share" type="button">Copy Payment Link</button>
+          <button id="shareWhats" class="share" type="button">Share on WhatsApp</button>
+        </div>
+
+        <div style="margin-top:6px" class="small">By continuing you confirm you're 18+ and accept our <a href="#" style="color:var(--accent); text-decoration:none">terms</a>.</div>
+      </form>
+
+      <div style="margin-top:8px; font-size:13px; color:var(--muted)">
+        <strong>Hot right now</strong>
+        <div style="margin-top:8px;" id="hotList">
+          <!-- small live items -->
+        </div>
+      </div>
+    </aside>
+
+    <footer>
+      <div>Made with ❤️ — Use responsibly. This page collects phone numbers to send connection details after payment.</div>
+    </footer>
+  </div>
+
+  <script>
+    // Config
+    const paymentBase = "https://sugarmummy-seven.vercel.app/home.html";
+
+    // Sample data (fake placeholders — replace with real if you have an API)
+    const SAMPLE = [
+      {name:"Lady Vanessa", age:48, country:"Lagos, NG", motto:"Loves travel & sponsoring talented men", vip:true, online:true},
+      {name:"Mrs. K", age:52, country:"Abuja, NG", motto:"Successful entrepreneur. Discreet & generous.", vip:false, online:true},
+      {name:"Duchess A.", age:45, country:"London, UK", motto:"Looking for company abroad.", vip:true, online:false},
+      {name:"Queen M.", age:57, country:"Toronto, CA", motto:"Sponsor for ambitious students.", vip:false, online:true},
+      {name:"Mama Rose", age:50, country:"Port Harcourt, NG", motto:"Fun & caring, loves cooking", vip:false, online:true},
+      {name:"Madam L", age:49, country:"Accra, GH", motto:"Vintage lover and sponsor", vip:false, online:true},
+      {name:"Patricia", age:46, country:"Dubai, AE", motto:"High profile sponsor", vip:true, online:true},
+      {name:"Gloria", age:54, country:"New York, USA", motto:"Match for serious applicants", vip:false, online:true},
+      {name:"Eve", age:47, country:"Ibadan, NG", motto:"Loves mentoring & travel", vip:false, online:false},
+      {name:"Sandra", age:51, country:"Kano, NG", motto:"Discreet sponsor", vip:false, online:true},
+      {name:"Theresa", age:55, country:"Paris, FR", motto:"Sponsor for relocation", vip:true, online:true},
+      {name:"Angela", age:53, country:"Lagos, NG", motto:"Supportive & strategic", vip:false, online:true}
+    ];
+
+    // Utilities
+    function $(s){return document.querySelector(s)}
+    function $all(s){return document.querySelectorAll(s)}
+
+    // Populate feed
+    const feed = $("#mummyFeed");
+    function renderFeed(filter="all"){
+      feed.innerHTML = "";
+      const filtered = SAMPLE.filter(item=>{
+        if(filter==="all") return true;
+        if(filter==="local") return item.country.includes("NG");
+        if(filter==="abroad") return !item.country.includes("NG");
+        if(filter==="VIP") return item.vip;
+        return true;
+      });
+
+      const onlineCount = filtered.filter(i=>i.online).length;
+      $("#onlineCount").textContent = onlineCount + " Online";
+
+      filtered.forEach((item, idx)=>{
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="avatar" aria-hidden="true">${item.name.split(" ").map(n=>n[0]).slice(0,2).join("")}</div>
+          <div class="meta">
+            <h3>${item.name} <span style="font-weight:600; font-size:13px; color:var(--muted)">• ${item.age}</span></h3>
+            <p>${item.motto}</p>
+            <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center">
+              <div class="status"><span class="dot" aria-hidden="true"></span>
+                <span style="margin-left:8px; color:var(--muted); font-size:13px">${item.country} ${item.vip? "• VIP":""}</span>
+              </div>
+              <div>
+                <button class="btn btn-connect" data-idx="${idx}" ${item.online? "": "disabled"}>${item.online? "Connect": "Offline"}</button>
+              </div>
+            </div>
+          </div>
+        `;
+        feed.appendChild(card);
+
+        // micro delay to create a cascade effect
+        setTimeout(()=>{ card.classList.add("pulse") }, idx*70);
+        setTimeout(()=>{ card.classList.remove("pulse") }, 1500 + idx*70);
+      });
+    }
+
+    // initial render
+    renderFeed();
+
+    // filter pills
+    $all(".pill").forEach(p=>{
+      p.addEventListener("click", ()=>{
+        $all(".pill").forEach(x=>x.classList.remove("active"));
+        p.classList.add("active");
+        renderFeed(p.dataset.filter);
+      });
+    });
+
+    // hot list (small)
+    const hotList = $("#hotList");
+    function renderHot(){
+      const hot = SAMPLE.filter(x=>x.online).slice(0,4);
+      hotList.innerHTML = hot.map(h=>`<div style="margin-bottom:6px">${h.name} — <span style="color:var(--muted)">${h.country}</span></div>`).join("");
+    }
+    renderHot();
+
+    // Form logic
+    const waInput = $("#wa");
+    const payBtn = $("#payBtn");
+    const previewBtn = $("#previewBtn");
+    const copyLinkBtn = $("#copyLink");
+    const shareWhats = $("#shareWhats");
+
+    function normalize(number){
+      // remove spaces and basic normalizations
+      return number.replace(/[^\d+]/g,"");
+    }
+
+    function validPhone(num){
+      const n = normalize(num);
+      // naive validations: accept +234 and 10-13 digit numbers
+      if(!n) return false;
+      if(n.startsWith("+")){
+        return n.length >= 10 && n.length <= 15;
+      }
+      return n.length >= 10 && n.length <= 13;
+    }
+
+    function buildPaymentUrl(phone){
+      // append whatsapp query param so payment page can greet user (if you handle it)
+      const u = new URL(paymentBase);
+      if(phone) u.searchParams.set("wa", phone);
+      u.searchParams.set("amount", "1500");
+      return u.toString();
+    }
+
+    payBtn.addEventListener("click", ()=>{
+      const phone = waInput.value.trim();
+      if(!validPhone(phone)){
+        alert("Please enter a valid WhatsApp number (e.g. +2348012345678 or 08012345678).");
+        waInput.focus();
+        return;
+      }
+      // Open payment in a new tab with phone attached
+      const url = buildPaymentUrl(phone);
+      window.open(url, "_blank");
+      // small UX: mark the top VIP card to show user reserved
+      payBtn.textContent = "Opening payment...";
+      setTimeout(()=> payBtn.textContent = "Proceed to Payment", 1600);
+    });
+
+    // Preview matches
+    previewBtn.addEventListener("click", ()=>{
+      // simulate highlight of first online match
+      const firstOnlineIdx = SAMPLE.findIndex(s=>s.online);
+      if(firstOnlineIdx === -1){ alert("No matches online right now."); return; }
+      const btn = document.querySelector('.btn-connect[data-idx="'+firstOnlineIdx+'"]');
+      if(btn){
+        btn.animate([{transform:"scale(1)"},{transform:"scale(1.06)"},{transform:"scale(1)"}], {duration:700});
+        btn.focus();
+        alert("Previewing: " + SAMPLE[firstOnlineIdx].name + " — " + SAMPLE[firstOnlineIdx].motto);
+      }
+    });
+
+    // Clicking connect on card -> prefill number and open payment
+    document.addEventListener("click", (e)=>{
+      if(e.target.matches(".btn-connect")){
+        const idx = Number(e.target.dataset.idx);
+        const item = SAMPLE[idx];
+        if(!item.online){ alert(item.name + " is offline right now."); return; }
+        // optional: prefill input and open payment
+        const exampleNumber = "+234" + (Math.floor(8000000000 + Math.random()*900000000)).toString().slice(0,10);
+        waInput.value = exampleNumber;
+        // small confirmation
+        if(confirm("You will be redirected to payment to connect with " + item.name + ". Proceed?")){
+          const url = buildPaymentUrl(waInput.value);
+          window.open(url, "_blank");
+        }
+      }
+    });
+
+    // Copy payment link
+    copyLinkBtn.addEventListener("click", async ()=>{
+      const url = buildPaymentUrl(waInput.value || "");
+      try{
+        await navigator.clipboard.writeText(url);
+        copyLinkBtn.textContent = "Copied!";
+        setTimeout(()=> copyLinkBtn.textContent = "Copy Payment Link", 1200);
+      }catch(e){
+        prompt("Copy this link:", url);
+      }
+    });
+
+    // Share on WhatsApp
+    shareWhats.addEventListener("click", ()=>{
+      const url = encodeURIComponent(buildPaymentUrl(waInput.value || ""));
+      const text = encodeURIComponent("Pay ₦1500 to get priority matches with verified sponsors: ")+ url;
+      const waShare = "https://wa.me/?text=" + text;
+      window.open(waShare, "_blank");
+    });
+
+    // Small progressive 'online count' ticker
+    setInterval(()=>{
+      const delta = (Math.random() > 0.5) ? 1 : -1;
+      // just small cosmetic change
+      const c = Math.max(3, Math.min(20, parseInt($("#onlineCount").textContent) + delta));
+      $("#onlineCount").textContent = c + " Online";
+    }, 3500);
+
+    // Accessibility: keyboard submit on Enter in WA input
+    waInput.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter"){
+        payBtn.click();
+      }
+    });
+
+    // On load: small staged rendering
+    (function staged(){
+      const initial = SAMPLE.slice(0,6);
+      feed.innerHTML = "";
+      initial.forEach((_,i)=>{
+        setTimeout(()=> renderFeed(), i*150);
+      });
+    })();
+
+    // Note: This page only collects the number and redirects user to the payment URL you supplied.
+    // Make sure your payment page handles the query param "wa" if you want to display it there.
+  </script>
+</body>
+</html>
 
