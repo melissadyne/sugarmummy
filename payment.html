@@ -2,187 +2,182 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pay ₦1,500 — Connect to Sugar Mummy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment — Joy Igbinosa</title>
   <style>
-    :root{--accent:#6b46c1;--bg:#f7f7fb;--card:#ffffff;--muted:#6b7280}
-    *{box-sizing:border-box}
-    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial; margin:0; background:var(--bg); color:#0f172a}
-    .container{max-width:760px;margin:28px auto;padding:20px}
-    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(15,23,42,0.06)}
-    h1{margin:0 0 6px;font-size:22px}
-    p.lead{margin:0 0 18px;color:var(--muted)}
-    .account{display:flex;gap:10px;align-items:center;background:#f1eefb;padding:12px;border-radius:8px}
-    .acc-details{flex:1}
-    .small{font-size:13px;color:var(--muted)}
-    button.copy{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
-    .info-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-    label{display:block;font-weight:600;margin-bottom:6px;font-size:13px}
-    input[type=text], input[type=email], input[type=date], input[type=file]{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
-    .hint{font-size:12px;color:var(--muted);margin-top:6px}
-    .actions{display:flex;gap:10px;margin-top:16px}
-    .btn{flex:1;padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-ghost{background:transparent;border:1px solid #e6e9ef}
-    .preview{margin-top:12px}
+    :root{--accent:#b22f6f;--muted:#666}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#fff;color:#111}
+    .container{max-width:900px;margin:36px auto;padding:24px}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;font-size:22px}
+    .account-card{border:3px solid var(--accent);border-radius:12px;padding:18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,rgba(178,47,111,0.03),transparent)}
+    .account-info{line-height:1.25}
+    .label{font-size:12px;color:var(--muted);}
+    .value{font-weight:700;font-size:18px}
+    button.copy{background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+
+    form{margin-top:22px;border-radius:12px;padding:18px;border:1px solid #eee}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:flex;flex-direction:column}
+    label{font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input[type="text"],input[type="email"],input[type="tel"],textarea,select{padding:10px;border-radius:8px;border:1px solid #ddd;font-size:14px}
+    textarea{min-height:100px}
+    .actions{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .primary{background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:10px;cursor:pointer}
+    .secondary{background:#f3f3f3;border:1px solid #eee;padding:10px 12px;border-radius:10px;cursor:pointer}
+
+    .notice{font-size:13px;color:#333;margin-top:10px}
     footer{margin-top:18px;font-size:13px;color:var(--muted)}
-    .success{background: #ecfdf5;border-left:4px solid #10b981;padding:10px;border-radius:8px;margin-top:12px}
-    @media(max-width:600px){.info-row{grid-template-columns:1fr}}
+
+    @media (max-width:700px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>Secure Payment — ₦1,500</h1>
-      <p class="lead">Pay <strong>₦1,500</strong> to connect with a Sugar Mummy. After payment, upload the transfer receipt below — we'll review and confirm your connection.</p>
+    <header>
+      <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#ffd6e9,#fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)">JI</div>
+      <div>
+        <h1>Pay to Joy Igbinosa</h1>
+        <div style="color:var(--muted);font-size:13px">Make your payment and submit your details below</div>
+      </div>
+    </header>
 
-      <div class="account" aria-live="polite">
-        <div class="acc-details">
-          <div style="font-weight:700">Joy Igbinosa</div>
-          <div class="small">Account number: <strong>8100653023</strong> — Moniepoint</div>
+    <section class="account-card" aria-label="payment-details">
+      <div class="account-info">
+        <div class="label">Account Name</div>
+        <div class="value">Joy Igbinosa</div>
+
+        <div style="height:10px"></div>
+        <div class="label">Account Number</div>
+        <div class="value">8100653023</div>
+
+        <div style="height:10px"></div>
+        <div class="label">Bank</div>
+        <div class="value">Moniepoint</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+        <div style="text-align:right;font-size:13px;color:var(--muted)">Copy details</div>
+        <div style="display:flex;gap:8px">
+          <button class="copy" id="copyAccount">Copy</button>
         </div>
-        <div style="text-align:right">
-          <div class="small">Amount</div>
-          <div style="font-weight:800; font-size:18px">₦1,500</div>
+        <div style="font-size:12px;color:var(--muted);text-align:right">Make sure to include your transaction reference when you pay.</div>
+      </div>
+    </section>
+
+    <form id="paymentForm">
+      <div class="grid">
+        <div class="field">
+          <label for="fullname">Full name</label>
+          <input id="fullname" name="fullname" type="text" required placeholder="Your full name" />
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp number (include country code)</label>
+          <input id="whatsapp" name="whatsapp" type="tel" required placeholder="e.g. +2348012345678" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="amount">Amount paid (₦)</label>
+          <input id="amount" name="amount" type="text" placeholder="e.g. 1500" required />
         </div>
       </div>
 
-      <div style="margin-top:16px">
-        <button class="copy" id="copyDetails">Copy account details</button>
-        <div class="hint">Tip: Use your bank app or USSD to transfer. After transfer, upload the screenshot and enter your transaction reference.</div>
+      <div style="margin-top:12px" class="field">
+        <label for="txref">Transaction reference (from your bank)</label>
+        <input id="txref" name="txref" type="text" placeholder="e.g. TRX12345678" required />
       </div>
 
-      <form id="paymentForm" class="preview" onsubmit="return handleSubmit(event)">
-        <div class="info-row">
-          <div>
-            <label for="fullname">Your full name</label>
-            <input id="fullname" name="fullname" type="text" placeholder="e.g. Chinedu Okoro" required />
-          </div>
-          <div>
-            <label for="email">Email (optional)</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" />
-          </div>
-        </div>
+      <div style="margin-top:12px" class="field">
+        <label for="message">Message / Notes</label>
+        <textarea id="message" name="message" placeholder="Optional note"></textarea>
+      </div>
 
-        <div class="info-row" style="margin-top:12px">
-          <div>
-            <label for="txref">Transaction reference</label>
-            <input id="txref" name="txref" type="text" placeholder="e.g. 20250922-ABC123" required />
-            <div class="hint">Enter the reference/trace from your bank transfer.</div>
-          </div>
-          <div>
-            <label for="paidOn">Date paid</label>
-            <input id="paidOn" name="paidOn" type="date" required />
-          </div>
-        </div>
+      <div class="actions">
+        <button type="submit" class="primary">Send details & Confirm</button>
+        <button type="button" id="openPaymentPage" class="secondary">Open payment instructions</button>
+        <div style="margin-left:auto;font-size:13px;color:var(--muted)">Your details will be emailed to the owner.</div>
+      </div>
 
-        <div style="margin-top:12px">
-          <label for="receipt">Upload payment proof (screenshot / receipt)</label>
-          <input id="receipt" name="receipt" type="file" accept="image/*" required />
-          <div class="hint">Accepted: JPG, PNG. Max file size depends on your browser. This demo stores the image locally in your browser for preview only.</div>
-          <div id="imgPreview"></div>
-        </div>
+      <p class="notice">Important: This page only collects payment confirmation and contact details. It does not process card payments — complete the transfer using the account information shown above.</p>
+    </form>
 
-        <div class="actions">
-          <button type="submit" class="btn btn-primary">Confirm & Generate Receipt</button>
-          <button type="button" class="btn btn-ghost" onclick="resetForm()">Reset</button>
-        </div>
-
-        <div id="result" aria-live="polite"></div>
-      </form>
-
-      <footer>
-        <strong>Payment account:</strong> Joy Igbinosa — 8100653023 (Moniepoint). <br>
-        This is a static payment page. No cards are collected here — you must complete the bank/USSD transfer yourself and upload proof. Admin will manually verify payments.
-      </footer>
-    </div>
+    <footer>Need help? Contact: <a href="mailto:mellisadyne77@gmail.com">mellisadyne77@gmail.com</a></footer>
   </div>
 
   <script>
-    const copyBtn = document.getElementById('copyDetails');
-    copyBtn.addEventListener('click', async () => {
-      const text = 'Joy Igbinosa | 8100653023 | Moniepoint | Amount: ₦1,500';
-      try {
+    // --- Configuration ---
+    // If you have a Formspree endpoint, put it here. Otherwise the form will open the user's mail client as fallback.
+    const FORM_ENDPOINT = ""; // <-- OPTIONAL: e.g. https://formspree.io/f/mayknrlj
+    const RECEIVER_EMAIL = "mellisadyne77@gmail.com";
+
+    // Copy account details
+    document.getElementById('copyAccount').addEventListener('click', async ()=>{
+      const text = `Account Name: Joy Igbinosa\nAccount Number: 8100653023\nBank: Moniepoint`;
+      try{
         await navigator.clipboard.writeText(text);
-        copyBtn.textContent = 'Copied!';
-        setTimeout(()=>copyBtn.textContent='Copy account details',1600);
-      } catch (e) {
-        alert('Unable to copy automatically. Please copy manually:\n' + text);
+        alert('Account details copied to clipboard');
+      }catch(e){
+        // fallback
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+        alert('Account details copied to clipboard');
       }
     });
 
-    const receiptInput = document.getElementById('receipt');
-    const imgPreview = document.getElementById('imgPreview');
-
-    receiptInput.addEventListener('change', (e)=>{
-      const file = e.target.files[0];
-      imgPreview.innerHTML='';
-      if(!file) return;
-      if(!file.type.startsWith('image/')){ imgPreview.textContent='Please select an image file.'; return }
-      const reader = new FileReader();
-      reader.onload = (ev)=>{
-        const img = document.createElement('img');
-        img.src = ev.target.result;
-        img.style.maxWidth='160px'; img.style.borderRadius='8px'; img.style.marginTop='8px';
-        imgPreview.appendChild(img);
-      };
-      reader.readAsDataURL(file);
+    // Open payment instructions (provided URL)
+    document.getElementById('openPaymentPage').addEventListener('click', ()=>{
+      window.open('https://sugarmummy-seven.vercel.app/payment.html','_blank');
     });
 
-    function resetForm(){
-      document.getElementById('paymentForm').reset();
-      imgPreview.innerHTML='';
-      document.getElementById('result').innerHTML='';
-    }
-
-    function handleSubmit(e){
+    // Form submission handler
+    document.getElementById('paymentForm').addEventListener('submit', async (e)=>{
       e.preventDefault();
-      const name = document.getElementById('fullname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const tx = document.getElementById('txref').value.trim();
-      const paidOn = document.getElementById('paidOn').value;
-      const file = document.getElementById('receipt').files[0];
-      if(!name || !tx || !paidOn || !file){ alert('Please fill all required fields and upload a receipt.'); return false }
-
-      // Create a verification payload and offer as downloadable JSON receipt for admin
-      const payload = {
-        account: {name: 'Joy Igbinosa', number: '8100653023', provider: 'Moniepoint'},
-        amount: 1500,
-        payer: {name, email},
-        transactionReference: tx,
-        paidOn,
-        receivedAt: new Date().toISOString()
+      const data = {
+        fullname: document.getElementById('fullname').value.trim(),
+        whatsapp: document.getElementById('whatsapp').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        amount: document.getElementById('amount').value.trim(),
+        txref: document.getElementById('txref').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        paidTo: 'Joy Igbinosa',
+        accountNumber: '8100653023',
+        bank: 'Moniepoint'
       };
 
-      const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
-      const url = URL.createObjectURL(blob);
+      // Basic validation
+      if(!data.fullname || !data.whatsapp || !data.amount || !data.txref){
+        alert('Please fill the required fields.');
+        return;
+      }
 
-      const resultEl = document.getElementById('result');
-      resultEl.innerHTML = `\n        <div class="success">Payment details recorded locally. Download the verification file and send it along with your receipt to the admin email for manual confirmation.</div>
-        <div style="margin-top:10px;display:flex;gap:8px">\n          <a href="${url}" download="payment-${tx}.json" class="btn btn-primary" style="padding:10px 14px;text-decoration:none;display:inline-block">Download verification file</a>
-          <button onclick="openMail('${encodeURIComponent(name)}','${encodeURIComponent(tx)}','${encodeURIComponent(paidOn)}','${encodeURIComponent(email)}')" class="btn btn-ghost">Open email to admin</button>
-        </div>
-      `;
+      const bodyText = `Payment confirmation from website:\n\nFull name: ${data.fullname}\nWhatsApp: ${data.whatsapp}\nEmail: ${data.email || 'N/A'}\nAmount: ₦${data.amount}\nTransaction reference: ${data.txref}\nNotes: ${data.message || 'N/A'}\n\nPaid to:\nAccount Name: ${data.paidTo}\nAccount Number: ${data.accountNumber}\nBank: ${data.bank}`;
 
-      // also save a copy to localStorage so user can re-download if needed
-      try{ localStorage.setItem('lastPayment-'+tx, JSON.stringify(payload)); } catch(e){ /* ignore */ }
+      // If a Formspree endpoint is provided, try sending there first
+      if(FORM_ENDPOINT){
+        try{
+          const resp = await fetch(FORM_ENDPOINT, {
+            method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({email: data.email||'no-reply@example.com', message: bodyText, whatsapp: data.whatsapp, fullname: data.fullname})
+          });
+          if(resp.ok){
+            alert('Details sent — thank you!');
+            document.getElementById('paymentForm').reset();
+            return;
+          }
+        }catch(err){
+          console.warn('Formspree submit failed', err);
+        }
+      }
 
-      // revoke URL after a while to free memory
-      setTimeout(()=>URL.revokeObjectURL(url), 60000);
-      return false;
-    }
-
-    function openMail(name, tx, paidOn, email){
-      const admin = 'melisadyne77@gmail.com'; // REPLACE with real admin email
-      const subject = encodeURIComponent('Payment confirmation: ' + tx);
-      let body = 'Hello%0A%0AI have completed the payment. Please find details below:%0A%0A';
-      body += 'Name: ' + decodeURIComponent(name) + '%0A';
-      body += 'Transaction ref: ' + decodeURIComponent(tx) + '%0A';
-      body += 'Date paid: ' + decodeURIComponent(paidOn) + '%0A';
-      body += 'Email: ' + (decodeURIComponent(email)||'N/A') + '%0A%0A';
-      body += 'I have attached the payment screenshot to this email for verification.%0A%0AThanks.';
-      window.location.href = `mailto:${admin}?subject=${subject}&body=${body}`;
-    }
+      // Fallback: open user's mail client with prefilled email
+      const subject = encodeURIComponent('Payment confirmation from website — ' + data.fullname);
+      const body = encodeURIComponent(bodyText);
+      const mailto = `mailto:${RECEIVER_EMAIL}?subject=${subject}&body=${body}`;
+      // Open mail client in new window/tab
+      window.location.href = mailto;
+    });
   </script>
 </body>
 </html>
