@@ -22,11 +22,21 @@
     }
     .avatar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
       padding: 20px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
+    }
+    .profile-card {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .profile-card:hover {
+      transform: translateY(-5px);
     }
     .avatar {
       border-radius: 50%;
@@ -35,25 +45,41 @@
       height: 120px;
       margin: auto;
       border: 3px solid #ff0066;
-      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
     }
     .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    .avatar:hover {
-      transform: scale(1.1);
+    .profile-info {
+      margin-top: 10px;
+    }
+    .profile-info h3 {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #ff0066;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 8px;
+    }
+    .btn:hover {
+      background-color: #e6005c;
     }
     .form-section {
       padding: 20px;
-      background-color: #f9f9f9;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin: 20px auto;
       max-width: 500px;
-      margin: auto;
     }
     input[type="text"] {
       padding: 10px;
@@ -62,22 +88,6 @@
       border-radius: 5px;
       margin-bottom: 15px;
       font-size: 16px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      background-color: #ff0066;
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .btn:hover {
-      background-color: #e6005c;
     }
   </style>
 </head>
@@ -90,21 +100,67 @@
 
   <!-- Avatar Grid -->
   <div class="avatar-grid">
-    <div class="avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Lady 1"></div>
-    <div class="avatar"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Lady 2"></div>
-    <div class="avatar"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Lady 3"></div>
-    <div class="avatar"><img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Lady 4"></div>
-    <div class="avatar"><img src="https://randomuser.me/api/portraits/women/83.jpg" alt="Lady 5"></div>
-    <div class="avatar"><img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Lady 6"></div>
+    <div class="profile-card">
+      <div class="avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Lady 1"></div>
+      <div class="profile-info">
+        <h3>Vanessa, 42</h3>
+        <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Connect</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="avatar"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Lady 2"></div>
+      <div class="profile-info">
+        <h3>Sophia, 38</h3>
+        <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Connect</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="avatar"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Lady 3"></div>
+      <div class="profile-info">
+        <h3>Olivia, 47</h3>
+        <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Connect</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="avatar"><img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Lady 4"></div>
+      <div class="profile-info">
+        <h3>Isabella, 50</h3>
+        <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Connect</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="avatar"><img src="https://randomuser.me/api/portraits/women/83.jpg" alt="Lady 5"></div>
+      <div class="profile-info">
+        <h3>Grace, 45</h3>
+        <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Connect</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="avatar"><img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Lady 6"></div>
+      <div class="profile-info">
+        <h3>Amelia, 53</h3>
+        <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Connect</a>
+      </div>
+    </div>
   </div>
 
-  <!-- Form Section -->
+  <!-- WhatsApp Form -->
   <div class="form-section">
     <form>
-      <input type="text" name="whatsapp" placeholder="Enter your WhatsApp Number" required><br>
-      <a href="https://sugarmummy-seven.vercel.app/payment.html" class="btn">Continue to Payment</a>
+      <input type="text" id="waNumber" placeholder="Enter your WhatsApp Number" required><br>
+      <a href="https://sugarmummy-seven.vercel.app/payment.html" id="payBtn" class="btn">Continue to Payment</a>
     </form>
   </div>
+
+  <script>
+    // Make payment button append WhatsApp number as query param
+    document.getElementById('payBtn').addEventListener('click', function(e) {
+      const wa = document.getElementById('waNumber').value.trim();
+      if(wa) {
+        this.href = "https://sugarmummy-seven.vercel.app/payment.html?wa=" + encodeURIComponent(wa) + "&amount=1500";
+      }
+    });
+  </script>
 
 </body>
 </html>
